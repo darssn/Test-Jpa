@@ -1,5 +1,7 @@
 package entites;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,7 +18,17 @@ public class Livre {
 	private String auteur;
 	
 	
-	public Livre(){}
+	@ManyToMany
+	@JoinTable(name="COMPO",
+		joinColumns = @JoinColumn(name="ID_LIV",referencedColumnName = "ID"),
+		inverseJoinColumns = @JoinColumn(name="ID_EMP",referencedColumnName ="ID")
+			
+			)
+	private List<Emprunt> listeEmprunt;
+	
+	public Livre(){
+		
+	}
 
 
 	/**Getter
@@ -64,6 +76,22 @@ public class Livre {
 	 */
 	public void setAuteur(String auteur) {
 		this.auteur = auteur;
+	}
+
+
+	/**Getter
+	 * @return the listeEmprunt
+	 */
+	public List<Emprunt> getListeEmprunt() {
+		return listeEmprunt;
+	}
+
+
+	/**Setter
+	 * @param listeEmprunt the listeEmprunt to set
+	 */
+	public void setListeEmprunt(List<Emprunt> listeEmprunt) {
+		this.listeEmprunt = listeEmprunt;
 	}
 	
 	
