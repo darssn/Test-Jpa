@@ -4,7 +4,10 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name="Operation")
+
+
 public class Operation {
 	
 	@Id
@@ -23,6 +26,7 @@ public class Operation {
 	
 	@ManyToOne()
 	@JoinColumn(name="id_compte")
+	
 	private Compte compte;
 	
 	
